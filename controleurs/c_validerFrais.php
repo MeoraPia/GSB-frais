@@ -103,5 +103,23 @@ switch ($action){
     //var_dump ($lesFraisHorsForfait);
       include 'vues/v_afficheFrais.php';
       break;
+  case 'supprimerFraisHorsForfait' :
+      $idVisiteur = filter_input(INPUT_POST, 'lstVisiteurs', FILTER_SANITIZE_STRING);
+      $lesVisiteurs=$pdo->getLesVisiteurs();
+      $leVisiteurASelectionner=$idVisiteur;
+      $leMois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_STRING);
+      $lesMois = getListeMois($mois);
+      $moisASelectionner = $leMois;
+      $lesFrais= filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+      $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING);
+      $libelle = filter_input(INPUT_POST, 'libelle', FILTER_SANITIZE_STRING);
+      $montant = filter_input(INPUT_POST, 'montant', FILTER_VALIDATE_FLOAT);
+      $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+      $pdo->supprimerFraisHorsForfait($id);
+      $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
+      $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
+      $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteur, $leMois);
+      include 'vues/v_afficheFrais.php';
+      break;
 }
 

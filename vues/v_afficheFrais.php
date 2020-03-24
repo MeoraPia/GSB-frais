@@ -132,7 +132,8 @@
                   <td style="border-right:1px solid #ff6f02;"><input type="text" name="montant" id="idMontant" size="10" value="<?php echo $montant ?>" class="form-control"/></td>
                  
                   <td><button class="btn btn-success" type="edit">Corriger</button>
-                      <button class="btn btn-danger" type="reset">Reinitialiser</button></td>
+                        href="index.php?uc=validerFrais&action=supprimerFraisHorsForfait"
+                          <button class="btn btn-danger" type="reset">Reinitialiser</button></td>
                 </tr>
            <?php
        }
